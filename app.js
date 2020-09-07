@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 const logger = require('morgan');
 
+const bodyParser = require('body-parser');
+
 const app = express();
 
 // Routes
@@ -26,6 +28,8 @@ db.once('open', () => console.log('connected to Database'));
 
 // middle wares
 app.use(logger('dev'));
+app.use(bodyParser.json());
+
 // routes
 app.use('/users', users);
 
