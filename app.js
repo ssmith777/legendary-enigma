@@ -4,14 +4,14 @@ const logger = require('morgan');
 
 const app = express();
 
+// Routes
+const users = require('./routes/users');
+
 // middle wares
 app.use(logger('dev'));
 // routes
-app.get('/', (req, res, next) => {
-  res.status(200).json({
-    message: 'you requested index page ..hi',
-  });
-});
+app.use('/users', users);
+
 // catch 404 and forward to error func
 app.use((req, res, next) => {
   const err = new Error('Not found');
