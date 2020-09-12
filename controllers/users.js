@@ -11,6 +11,19 @@ module.exports = {
     const user = await newUser.save();
     res.status(200).json(user);
   },
+  getUser: async (req, res, next) => {
+    const { userId } = req.params;
+    const user = await User.findById(userId);
+    res.status(200).json(user);
+  },
+
+  replaceUser: async (req, res, next) => {
+    const { userId } = req.params;
+    const newUser = req.body;
+
+    console.log('UserId: ', userId);
+    console.log('newUser ', newUser);
+  },
 };
 
 /*
