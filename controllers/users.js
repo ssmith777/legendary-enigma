@@ -18,11 +18,22 @@ module.exports = {
   },
 
   replaceUser: async (req, res, next) => {
+    // all fields in User object def required
     const { userId } = req.params;
     const newUser = req.body;
+    const result = await User.findByIdAndUpdate(userId, newUser);
+    console.log('result', result);
+    res.status(200).json({ success: true });
+  },
 
-    console.log('UserId: ', userId);
-    console.log('newUser ', newUser);
+  updateUser: async (req, res, next) => {
+    // this func does not require all fields
+    // in the User object to update
+    const { userId } = req.params;
+    const newUser = req.body;
+    const result = await User.findByIdAndUpdate(userId, newUser);
+    console.log('result', result);
+    res.status(200).json({ success: true });
   },
 };
 
