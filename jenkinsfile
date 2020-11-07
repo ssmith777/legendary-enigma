@@ -2,4 +2,7 @@ node {
   stage 'Checkout'
   git url: 'https://github.com/ssmith777/jenkins-docker-example.git'
   // another test
+
+  stage 'build'
+  docker.build('turnkeyapi-1')
 }
