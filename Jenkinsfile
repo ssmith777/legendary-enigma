@@ -1,7 +1,7 @@
 pipeline {
   environment {
   registry = "ssmith82/turnkey-api"
-  registryCredential = 'ssmith82'
+  registryCredential = 'dockerhub_id'
   dockerImage = ''
 }
 agent any
