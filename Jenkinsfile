@@ -35,7 +35,7 @@ agent any
     // }
     stage('Starting Image') {
       steps{
-          sh "./start.sh" 
+          sh "bash ./start.sh" 
       }
     }
   }
