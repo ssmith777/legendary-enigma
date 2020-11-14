@@ -35,7 +35,7 @@ agent any
     }
     stage('Starting Image') {
       steps{
-        sh "docker-compose up -d ${env.COMPOSE_FILE}" 
+        sh "docker-compose up -d" 
       }
     }
   }
