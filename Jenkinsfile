@@ -3,6 +3,7 @@ pipeline {
   registry = "ssmith82/turnkey-api"
   registryCredential = 'dockerhub_id'
   dockerImage = ''
+  COMPOSE_FILE = "docker-compose.yml"
 }
 agent any
   stages {
@@ -34,7 +35,7 @@ agent any
     }
     stage('Starting Image') {
       steps{
-        sh "./docker-compose up -d"
+        sh "docker-compose -d ${env.COMPOSE_FILE}" 
       }
     }
   }
