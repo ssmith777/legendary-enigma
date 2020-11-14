@@ -15,7 +15,7 @@ agent any
     stage('Building our image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER:latest"
+          dockerImage = docker.build registry //+ ":$BUILD_NUMBER:latest"
         }
       }
     }
