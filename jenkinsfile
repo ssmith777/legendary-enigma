@@ -6,5 +6,4 @@ node {
   stage 'build'
   docker.build('turnkeyapi-test')
 
-  
 }
