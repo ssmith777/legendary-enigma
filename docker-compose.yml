@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   turnkey-api:
-    image: sssmith82/turnkey-api
+    image: sssmith82/turnkey-api:lts
     user: root
     container_name: turnkey-api
     environment:
