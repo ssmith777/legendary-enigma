@@ -33,7 +33,7 @@ agent any
       steps{
         script {
             sh "docker-compose down"
-            sh "docker rmi $registry"
+            sh "docker rmi $registry:latest"
             sh "docker-compose up -d"
         }
       }
