@@ -39,11 +39,14 @@ agent any
     //   }
     // }
     stage('Running Docker Container') {
-      echo "Docker Run ..."
-      withEnv(['VERSION' + $BUILD_NUMBER]) {
-        docker.withTool('docker') {
-        // sh "docker-compose rm -f -s -v"
-          sh "docker-compose up -d"
+      steps{
+        script {
+          withEnv(['VERSION' + $BUILD_NUMBER]) {
+            docker.withTool('docker') {
+            // sh "docker-compose rm -f -s -v"
+              sh "docker-compose up -d"
+            }
+          }
         }
       }
     }
