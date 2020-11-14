@@ -35,7 +35,7 @@ agent any
     // }
     stage('Starting Image') {
       steps{
-          sh "docker-compose -f $registry:$BUILD_NUMBER -d" 
+          sh "./start.sh" 
       }
     }
   }
