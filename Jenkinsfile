@@ -28,11 +28,11 @@ agent any
         }
       }
     }
-    stage('Cleaning up') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
+    // stage('Cleaning up') {
+    //   steps{
+    //     sh "docker rmi $registry:$BUILD_NUMBER"
+    //   }
+    // }
     stage('Starting Image') {
       steps{
         sh "docker-compose up -d" 
