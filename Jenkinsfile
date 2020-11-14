@@ -15,7 +15,7 @@ agent any
     stage('Building our image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER:latest"
         }
       }
     }
@@ -41,11 +41,9 @@ agent any
     stage('Running Docker Container') {
       steps{
         script {
-          withEnv(['VERSION' + $BUILD_NUMBER]) {
-            docker.withTool('docker') {
+          docker.withTool('docker') {
             // sh "docker-compose rm -f -s -v"
-              sh "docker-compose up -d"
-            }
+            sh "docker-compose up -d"
           }
         }
       }
