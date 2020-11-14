@@ -4,7 +4,7 @@ node {
   // another test
 
   stage 'build'
-  docker.build('turnkeyapi-1')
+  docker.build('turnkeyapi-test')
 
   
 }
