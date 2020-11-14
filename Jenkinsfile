@@ -33,9 +33,17 @@ agent any
     //     sh "docker rmi $registry:$BUILD_NUMBER"
     //   }
     // }
-    stage('Starting Image') {
-      steps{
-          sh "docker-compose -f $registry:$BUILD_NUMBER -d" 
+    // stage('Starting Image') {
+    //   steps{
+    //       sh "docker-compose up -d" 
+    //   }
+    // }
+    stage('Running Docker Container') {
+    echo "Docker Run ..."
+    withEnv(['VERSION' + $BUILD_NUMBER]) {
+      docker.withTool('docker') {
+       // sh "docker-compose rm -f -s -v"
+        sh "docker-compose up -d"
       }
     }
   }
