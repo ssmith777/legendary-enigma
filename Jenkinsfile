@@ -19,6 +19,7 @@ agent any
         }
       }
     }
+  
     stage('Deploy our image') {
       steps{
         script {
@@ -26,27 +27,21 @@ agent any
           dockerImage.push()
           }
         }
+      } 
+    }
+    stage('Running Docker Container') {
+      steps{
+        script {
+            sh "docker-compose down"
+            sh "docker rmi $registry"
+            sh "docker-compose up -d"
+        }
       }
     }
     // stage('Cleaning up') {
     //   steps{
-    //     sh "docker rmi $registry:$BUILD_NUMBER"
-    //   }
-    // }
-    // stage('Starting Image') {
-    //   steps{
-    //       sh "docker-compose up -d" 
-    //   }
-    // }
-    stage('Running Docker Container') {
-      steps{
-        script {
-         
-            // sh "docker-compose rm -f -s -v"
-            sh "docker-compose up -d"
           
-        }
-      }
-    }
+    //   }
+    // }
   }
 }
