@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  turnkey-api:
+    image: sssmith82/turnkey-api
+    user: root
+    container_name: turnkey-api
+    environment:
+      NODE_ENV: production
+    networks:
+      - proxy
+    restart: always
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=proxy'
+      - 'traefik.http.routers.turnkey-api-secure.entrypoints=websecure'
+      - 'traefik.http.routers.turnkey-api-secure.rule=Host(`api.letsbuilditinthecloud.com`)'
+      - 'traefik.http.routers.turnkey-api-secure.service=turnkey-api-service'
+      - 'traefik.http.services.turnkey-api-service.loadbalancer.server.port=5000'
+
+networks:
+  proxy:
+    external: true

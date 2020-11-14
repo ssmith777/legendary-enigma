@@ -32,5 +32,10 @@ agent any
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    stage('Starting Image') {
+      steps{
+        sh "docker-compose up -d"
+      }
+    }
   }
 }
