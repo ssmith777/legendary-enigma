@@ -35,10 +35,7 @@ agent any
     // }
     stage('Starting Image') {
       steps{
-        docker.withRegistry( '', registryCredential ) {
           sh "docker-compose -f $registry:$BUILD_NUMBER -d" 
-        }
-      
       }
     }
   }
