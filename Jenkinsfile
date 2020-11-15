@@ -19,25 +19,26 @@ agent any
         }
       }
     }
-  
-    stage('Deploy our image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
+    stage('Running Docker Container') {
+        steps{
+          sleep time: 30000, unit: 'MILLISECONDS'
+          script {
+              sh "docker-compose down"
+              sh "docker rmi $registry:latest"
+              sh "docker-compose up -d"
           }
         }
-      } 
-    }
-    stage('Running Docker Container') {
-      steps{
-        script {
-            sh "docker-compose down"
-            sh "docker rmi $registry:latest"
-            sh "docker-compose up -d"
-        }
       }
-    }
+      stage('Deploy our image') {
+        steps{
+          script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+            }
+          }
+        } 
+      }
+   
     // stage('Cleaning up') {
     //   steps{
           
