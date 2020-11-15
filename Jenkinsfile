@@ -21,16 +21,6 @@ agent any
         }
       }
     }
-    // stage('Running Docker Container') {
-    //     steps{
-    //       sleep time: 30000, unit: 'MILLISECONDS'
-    //       script {
-    //           sh "docker-compose down"
-    //           sh "docker rmi $registry:$PREV_BUILD" 
-    //           sh "docker-compose up -d"
-    //       }
-    //     }
-    //   }
     stage('Deploy our image') {
       steps{
         script {
@@ -49,5 +39,14 @@ agent any
         }
       } 
     }
+    stage('Running Docker Container') {
+    steps{
+      sleep time: 30000, unit: 'MILLISECONDS'
+      script {
+          sh "docker-compose down"
+          sh "docker-compose up -d"
+      }
+    }
+  }
   }
 }
