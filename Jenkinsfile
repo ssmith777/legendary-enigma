@@ -4,6 +4,7 @@ pipeline {
   registryCredential = 'dockerhub_id'
   dockerImage = ''
   COMPOSE_FILE = "docker-compose.yml"
+  PREV_BUILD = $BUILD_NUMBER - 1
 }
 agent any
   stages {
@@ -15,7 +16,7 @@ agent any
     stage('Building our image') {
       steps{
         script {
-          dockerImage = docker.build registry //+ ":$BUILD_NUMBER:latest"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
@@ -24,7 +25,7 @@ agent any
           sleep time: 30000, unit: 'MILLISECONDS'
           script {
               sh "docker-compose down"
-              sh "docker rmi $registry:latest"
+              sh "docker rmi $registry:$PREV_BUILD" 
               sh "docker-compose up -d"
           }
         }
