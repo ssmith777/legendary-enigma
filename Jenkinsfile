@@ -32,8 +32,8 @@ agent any
 
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
-            dockerImage.push(major)
-            dockerImage.push(minor)
+            // dockerImage.push(major)
+            // dockerImage.push(minor)
             dockerImage.push(patch)
           }
         }
