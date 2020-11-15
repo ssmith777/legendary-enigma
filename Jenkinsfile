@@ -39,7 +39,7 @@ agent any
         }
       } 
     }
-    stage('Running Docker Container') {
+    stage('Running latest Build') {
     steps{
       sleep time: 30000, unit: 'MILLISECONDS'
       script {
