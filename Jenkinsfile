@@ -4,7 +4,7 @@ pipeline {
   registryCredential = 'dockerhub_id'
   dockerImage = ''
   COMPOSE_FILE = "docker-compose.yml"
-  PREV_BUILD = ${Int.parseInt($BUILD_NUMBER) - 1}
+  PREV_BUILD = "${Int.parseInt($BUILD_NUMBER) - 1}"
 }
 agent any
   stages {
