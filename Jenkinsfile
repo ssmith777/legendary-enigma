@@ -39,14 +39,29 @@ agent any
         }
       } 
     }
-    stage('Running latest Build') {
-    steps{
-      sleep time: 30000, unit: 'MILLISECONDS'
-      script {
-          sh "docker-compose down"
-          sh "docker-compose up -d"
+    stage('Stop API') {
+      steps{
+        sleep time: 30000, unit: 'MILLISECONDS'
+        script {
+            sh "docker-compose down"
+        }
       }
     }
-  }
+    stage('Remove old Images') {
+      steps{
+        sleep time: 30000, unit: 'MILLISECONDS'
+        script {
+            sh "docker image prune -f"
+        }
+      }
+    }
+    stage('Running latest Build') {
+      steps{
+        sleep time: 30000, unit: 'MILLISECONDS'
+        script {
+            sh "docker-compose up -d"
+        }
+      }
+    }
   }
 }
